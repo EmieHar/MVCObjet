@@ -1,8 +1,8 @@
 <?php
 
-namespace Emili\MvcObjet\Controllers;
+namespace Emili\MvcObjet\MvcObjet2\Controllers;
 
-use Emili\MvcObjet\Models\Services\MovieService;
+use Emili\MvcObjet\MvcObjet2\Models\Services\MovieService;
 
 class MovieController {
     private $movieService;
@@ -13,20 +13,20 @@ class MovieController {
         $this->movieService = new MovieService();
     }
 
-    // public function ListeActeurs(){
-    //     $liste = $this->movieService->ListeActeurs();
-    //     // return $liste;
-    //   require_once __DIR__ . '/../View/MoviesView.php';
-    // }
-
-    public function listeActeurs() {
-        $lesacteurs = $this->movieService->listeActeurs();
-       // return $liste;
-       echo $this->twig->render('Movies.html.twig', ["acteurs" => $lesacteurs]); 
+    public function listeMovies(){
+        $liste = $this->movieService->ListeMovies();
+        // return $liste;
+      require_once __DIR__ . '/../View/MoviesView.php';
     }
 
-    public function get1Acteur($a){
-        $liste = $this->movieService->get1Acteur($a);
+    // public function listeMovies() {
+    //     $lesfilms = $this->movieService->listeMovies();
+    //    // return $liste;
+    //    echo $this->twig->render('Movies.html.twig', ["films" => $lesfilms]); 
+    // }
+
+    public function get1Movie($a){
+        $liste = $this->movieService->get1Movie($a);
         // return $liste;
         require_once __DIR__ . '/../View/MovieView.php';
     }

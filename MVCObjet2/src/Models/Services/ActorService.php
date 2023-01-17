@@ -1,8 +1,8 @@
 <?php
 
-namespace Emili\MvcObjet\Models\Services;
+namespace Emili\MvcObjet\MvcObjet2\Models\Services;
 
-use Emili\MvcObjet\Models\Daos\ActorDao;
+use Emili\MvcObjet\MvcObjet2\Models\Daos\ActorDao;
 
 class ActorService {
     private $actorDao;
@@ -19,6 +19,15 @@ class ActorService {
     public function get1Acteur($a){
         $actor = $this->actorDao->findOne($a);
         return $actor;
+    }
+
+    public function recordActor($a){
+        //création de l'objet acteur.
+
+        $ac = $this->actorDao->createObjectFromFields($a);
+
+        //envoi de l'objet acteur au DAO
+        $acteur = $this->actorDao->recordActor($ac);
     }
 }
 

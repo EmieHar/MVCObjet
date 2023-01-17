@@ -1,7 +1,7 @@
 <?php
-namespace Emili\MvcObjet\Models\Daos;
+namespace Emili\MvcObjet\MvcObjet2\Models\Daos;
 
-use Emili\MvcObjet\Models\Entities\Actor;
+use Emili\MvcObjet\MvcObjet2\Models\Entities\Actor;
 
 class ActorDao extends BaseDao{
 
@@ -36,6 +36,20 @@ class ActorDao extends BaseDao{
 
         $acteur = new Actor();
         $acteur->setId($res['id'])->setFirstname($res['firstname'])->setLastname($res['lastname']);
+        return $acteur;
+    }
+
+    public function recordActor(Actor $actor){
+        $stmt = $this->db->prepare(" INSERT INTO actor ( firstname, lastname) VALUES (?,?)");
+        $stmt->execute([ $actor->getFirstname(), $actor->getLastname()]);
+    }
+
+    public function createObjectFromFields($fields){
+        $acteur = new Actor();
+        $acteur ->setId($fields['id'] || NULL)
+                ->setFirstname($fields['firstname'])
+                ->setLastname($fields['lastname']);
+                
         return $acteur;
     }
 }

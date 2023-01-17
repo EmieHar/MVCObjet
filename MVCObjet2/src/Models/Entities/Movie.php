@@ -1,5 +1,5 @@
 <?php
-namespace Emili\MvcObjet\Models\Entities;
+namespace Emili\MvcObjet\MvcObjet2\Models\Entities;
 
 class Movie
 {
@@ -9,9 +9,9 @@ class Movie
     private $duration;
     private $date;
     private $coverImage;
-    private $genre;
-    private $director;
-    private $actors;
+    // private $genre;
+    // private $director;
+    // private $actors;
 
     public function getId(): int
     {
@@ -79,37 +79,5 @@ class Movie
         return $this;
     }
 
-    public function getGenre(): string
-    {
-        return $this->genre;
-    }
-
-    public function setGenre(string $genre)
-    {
-        $this->genre = $genre;
-        return $this;
-    }
-
-    public function getActors(): string
-    {
-        return $this->actors;
-    }
-
-    public function setActors(string $actors)
-    {
-        $this->actors = $actors;
-        return $this;
-    }
-
-    public function getRealisateur(): string
-    {
-        return $this->director;
-    }
-
-    public function setRealisateur(string $director)
-    {
-        $this->director = $director;
-        return $this;
-    }
 }
 ?>

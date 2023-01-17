@@ -1,12 +1,12 @@
 <?php
-namespace Emili\MvcObjet\Models\Daos;
+namespace Emili\MvcObjet\MvcObjet2\Models\Daos;
 
-use Emili\MvcObjet\Models\Entities\Movie;
+use Emili\MvcObjet\MvcObjet2\Models\Entities\Movie;
 
 class MovieDao extends BaseDao{
 
     public function findAll(){
-        $stmt = $this->db->prepare(" SELECT * FROM film ");
+        $stmt = $this->db->prepare(" SELECT * FROM movie ");
         $res = $stmt->execute();
 
         if ($res) {
@@ -29,16 +29,16 @@ class MovieDao extends BaseDao{
               ->setDescription($r['description'])
               ->setduration($r['duration'])
               ->setDate($r['date'])
-              ->setCoverImage($r['coverimage'])
-              ->setGenre($r['genre'])
-              ->setRealisateur($r['realisateur'])
-              ->setActors($r['actor']);
+              ->setCoverImage($r['coverimage']);
+            //   ->setGenre($r['genre'])
+            //   ->setRealisateur($r['realisateur'])
+            //   ->setActors($r['actor']);
 
         return $movie;
     }
 
     public function findOne($id){
-        $stmt = $this->db->prepare(" SELECT * FROM film WHERE id = ?");
+        $stmt = $this->db->prepare(" SELECT * FROM movie WHERE id = ?");
         $stmt->execute([$id]);
         $res = $stmt->fetch();
 
@@ -48,10 +48,10 @@ class MovieDao extends BaseDao{
               ->setDescription($res['description'])
               ->setduration($res['duration'])
               ->setDate($res['date'])
-              ->setCoverImage($res['coverimage'])
-              ->setGenre($res['genre'])
-              ->setRealisateur($res['realisateur'])
-              ->setActors($res['actor']);
+              ->setCoverImage($res['coverimage']);
+            //   ->setGenre($res['genre'])
+            //   ->setRealisateur($res['realisateur'])
+            //   ->setActors($res['actor']);
         return $movie;
     }
 }

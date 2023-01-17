@@ -1,8 +1,8 @@
 <?php
 
-namespace Emili\MvcObjet\Controllers;
+namespace Emili\MvcObjet\MvcObjet2\Controllers;
 
-use Emili\MvcObjet\Models\Services\RealisateurService;
+use Emili\MvcObjet\MvcObjet2\Models\Services\RealisateurService;
 
 class RealisateurController {
     private $realisateurService;

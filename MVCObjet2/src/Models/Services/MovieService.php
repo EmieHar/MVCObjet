@@ -1,8 +1,8 @@
 <?php
 
-namespace Emili\MvcObjet\Models\Services;
+namespace Emili\MvcObjet\MvcObjet2\Models\Services;
 
-use Emili\MvcObjet\Models\Daos\MovieDao;
+use Emili\MvcObjet\MvcObjet2\Models\Daos\MovieDao;
 
 class MovieService {
     private $movieDao;
@@ -11,12 +11,12 @@ class MovieService {
         $this->movieDao = new MovieDao();
     }
 
-    public function ListeActeurs(){
+    public function ListeMovies(){
         $liste = $this->movieDao->findAll();
         return ($liste);
     }
 
-    public function get1Acteur($a){
+    public function get1Movie($a){
         $actor = $this->movieDao->findOne($a);
         return $actor;
     }

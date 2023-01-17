@@ -9,15 +9,17 @@ $loader = new FilesystemLoader( __DIR__ . '/src/View');
 $twig = new Environment($loader, ['cache' => false, 'debug' => true]);
 $twig->addExtension(new \Twig\Extension\DebugExtension());
 
-use  Emili\MvcObjet\controllers\ActorController; 
-use  Emili\MvcObjet\controllers\GenreController; 
-use  Emili\MvcObjet\controllers\RealisateurController; 
+use  Emili\MvcObjet\MvcObjet2\controllers\ActorController; 
+use  Emili\MvcObjet\MvcObjet2\controllers\GenreController; 
+use Emili\MvcObjet\MvcObjet2\controllers\RealisateurController;
+use Emili\MvcObjet\MvcObjet2\controllers\MovieController; 
 
 $actorController = new ActorController($twig);
 
 // $actorController = new ActorController();
 $genreController = new GenreController();
 $realisateurController = new RealisateurController();
+$movieController = new MovieController($twig);
 
 $base  = dirname($_SERVER['PHP_SELF']);
 
@@ -69,6 +71,28 @@ $route->respond('GET','/realisateurs/[:id]', function($req,$res) use ($realisate
     echo "<pre>";
     print_r ($realisateur);
     echo "</pre>";
+});
+
+$route->respond('GET','/movies', function() use ($movieController){
+    $lm = $movieController->ListeMovies();
+    echo "<pre>";
+    print_r ($lm);
+    echo "</pre>";
+});
+
+$route->respond('GET','/movies/[:id]', function($req,$res) use ($movieController){
+ $movie = $movieController->get1Movie($req->id);
+    echo "<pre>";
+    print_r ($movie);
+    echo "</pre>";
+});
+
+$route->respond('GET','/addactor', function() use ($actorController){
+    $actorController ->addActor();//affichage d'un formulaire pour ajout acteur
+});
+
+$route->respond('POST','/recordactor', function($req) use ($actorController){
+    $actorController->recordActor($req->paramsPost());//ajout acteur
 });
 
 $route->dispatch();

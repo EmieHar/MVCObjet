@@ -1,8 +1,8 @@
 <?php
 
-namespace Emili\MvcObjet\Models\Services;
+namespace Emili\MvcObjet\MvcObjet2\Models\Services;
 
-use Emili\MvcObjet\Models\Daos\GenreDao;
+use Emili\MvcObjet\MvcObjet2\Models\Daos\GenreDao;
 
 class GenreService {
     private $genreDao;

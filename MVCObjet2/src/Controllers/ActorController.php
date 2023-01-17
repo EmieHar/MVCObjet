@@ -1,8 +1,8 @@
 <?php
 
-namespace Emili\MvcObjet\Controllers;
+namespace Emili\MvcObjet\MvcObjet2\Controllers;
 
-use Emili\MvcObjet\Models\Services\ActorService;
+use Emili\MvcObjet\MvcObjet2\Models\Services\ActorService;
 
 class ActorController {
     private $actorService;
@@ -29,6 +29,14 @@ class ActorController {
         $liste = $this->actorService->get1Acteur($a);
         // return $liste;
         require_once __DIR__ . '/../View/ActorView.php';
+    }
+
+    public function addActor(){
+       echo $this->twig->render('AddActor.html.twig');
+    }
+
+    public function recordActor($a){
+        $this->actorService->recordActor($a);
     }
 }
 

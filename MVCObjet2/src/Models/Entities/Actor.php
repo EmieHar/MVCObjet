@@ -1,6 +1,6 @@
 <?php
 
- namespace Emili\MvcObjet\Models\Entities;
+ namespace Emili\MvcObjet\MvcObjet2\Models\Entities;
 
 class Actor{
 

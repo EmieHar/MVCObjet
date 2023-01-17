@@ -1,8 +1,8 @@
 <?php
 
-namespace Emili\MvcObjet\Models\Services;
+namespace Emili\MvcObjet\MvcObjet2\Models\Services;
 
-use Emili\MvcObjet\Models\Daos\RealisateurDao;
+use Emili\MvcObjet\MvcObjet2\Models\Daos\RealisateurDao;
 
 class RealisateurService {
     private $realisateurDao;

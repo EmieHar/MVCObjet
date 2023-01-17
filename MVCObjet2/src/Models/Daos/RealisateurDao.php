@@ -1,7 +1,7 @@
 <?php
-namespace Emili\MvcObjet\Models\Daos;
+namespace Emili\MvcObjet\MvcObjet2\Models\Daos;
 
-use Emili\MvcObjet\Models\Entities\Realisateur;
+use Emili\MvcObjet\MvcObjet2\Models\Entities\Realisateur;
 
 class RealisateurDao extends BaseDao{
 
