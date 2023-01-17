@@ -1,8 +1,8 @@
 <?php
 
-namespace Emili\MvcObjet\Controllers;
+namespace Emili\MvcObjet\MvcObjet1\Controllers;
 
-use Emili\MvcObjet\Models\Services\GenreService;
+use Emili\MvcObjet\MvcObjet1\Models\Services\GenreService;
 
 class GenreController {
 

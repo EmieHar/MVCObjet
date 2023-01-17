@@ -1,7 +1,7 @@
 <?php
-namespace Emili\MvcObjet\Models\Daos;
+namespace Emili\MvcObjet\MvcObjet1\Models\Daos;
 
-use Emili\MvcObjet\Models\Entities\Actor;
+use Emili\MvcObjet\MvcObjet1\Models\Entities\Actor;
 
 class ActorDao extends BaseDao{
 

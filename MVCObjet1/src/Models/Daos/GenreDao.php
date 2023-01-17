@@ -1,7 +1,7 @@
 <?php
-namespace Emili\MvcObjet\Models\Daos;
+namespace Emili\MvcObjet\MvcObjet1\Models\Daos;
 
-use Emili\MvcObjet\Models\Entities\Genre;
+use Emili\MvcObjet\MvcObjet1\Models\Entities\Genre;
 
 class GenreDao extends BaseDao{
 

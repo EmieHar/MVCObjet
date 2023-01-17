@@ -1,8 +1,8 @@
 <?php
 
-namespace Emili\MvcObjet\Models\Services;
+namespace Emili\MvcObjet\MvcObjet1\Models\Services;
 
-use Emili\MvcObjet\Models\Daos\ActorDao;
+use Emili\MvcObjet\MvcObjet1\Models\Daos\ActorDao;
 
 class ActorService {
     private $actorDao;

@@ -3,7 +3,7 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Emili\\MvcObjet\\": "src/"
+            "Emili\\MvcObjet\\MvcObjet2": "src/"
         }
     },
     "authors": [

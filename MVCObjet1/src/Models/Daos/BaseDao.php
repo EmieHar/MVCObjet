@@ -3,7 +3,7 @@
 // DAO : data access object 
 // le DAO est un design pattern (patron de conception)
 // 
-namespace Emili\MvcObjet\Models\Daos;
+namespace Emili\MvcObjet\MvcObjet1\Models\Daos;
 
 use PDO;
 

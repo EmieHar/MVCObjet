@@ -9,9 +9,9 @@ $loader = new FilesystemLoader( __DIR__ . '/src/View');
 $twig = new Environment($loader, ['cache' => false, 'debug' => true]);
 $twig->addExtension(new \Twig\Extension\DebugExtension());
 
-use  Emili\MvcObjet\controllers\ActorController; 
-use  Emili\MvcObjet\controllers\GenreController; 
-use  Emili\MvcObjet\controllers\RealisateurController; 
+use  Emili\MvcObjet\MvcObjet1\controllers\ActorController; 
+use  Emili\MvcObjet\MvcObjet1\controllers\GenreController; 
+use  Emili\MvcObjet\MvcObjet1\controllers\RealisateurController; 
 
 $actorController = new ActorController($twig);
 
