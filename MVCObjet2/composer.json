@@ -1,0 +1,19 @@
+{
+    "name": "emhar/mvc-objet",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Emili\\MvcObjet\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "EmieHarit",
+            "email": "emilie.haritchabalet@hotmail.fr"
+        }
+    ],
+    "require": {
+        "klein/klein": "^2.1",
+        "twig/twig": "^3.5"
+    }
+}
