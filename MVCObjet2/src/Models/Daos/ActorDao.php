@@ -23,6 +23,7 @@ class ActorDao extends BaseDao{
 
 
     public function creerObjetFromSql($r){
+       
         $actor = new Actor();
         $actor->setId($r['id'])->setFirstname($r['firstname'])->setLastname($r['lastname']);
 
@@ -44,13 +45,23 @@ class ActorDao extends BaseDao{
         $stmt->execute([ $actor->getFirstname(), $actor->getLastname()]);
     }
 
-    public function createObjectFromFields($fields){
-        $acteur = new Actor();
-        $acteur ->setId($fields['id'] || NULL)
-                ->setFirstname($fields['firstname'])
-                ->setLastname($fields['lastname']);
-                
-        return $acteur;
+
+    public function findByMovie($id){
+        $stmt = $this->db->prepare(" SELECT actor.* FROM actor, joue, movie WHERE actor.id = joue.id_acteur AND movie.id = joue.id_movie AND movie.id = ?");
+        $res= $stmt->execute([$id]);
+         
+
+        if ($res) {
+            $actors = [];
+            while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                $actors[] = $this->creerObjetFromSql($row);
+            }
+            return $actors;
+
+        } else {
+            throw new \PDOException($stmt->errorInfo()[2]);
+        }
+        
     }
 }
 

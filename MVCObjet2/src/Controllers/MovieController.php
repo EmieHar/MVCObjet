@@ -26,10 +26,25 @@ class MovieController {
     // }
 
     public function get1Movie($a){
-        $liste = $this->movieService->get1Movie($a);
+        $liste = $this->movieService->getById($a);
         // return $liste;
-        require_once __DIR__ . '/../View/MovieView.php';
+        echo $this->twig->render('Movie.html.twig', ["movie" => $liste]);
     }
+
+    public function addMovie(){
+
+        $objects = $this->movieService->addMovie();
+        $acteurs = $objects[0];
+        $genres = $objects[1];
+        $realisateurs = $objects[2];
+        
+        echo $this->twig->render('AddMovie.html.twig',["acteurs" => $acteurs, "genres" => $genres, "realisateurs" => $realisateurs]);
+    }
+
+    public function recordMovie($a){
+        $this->movieService->recordMovie($a);
+    }
+
 }
 
 ?>

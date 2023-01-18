@@ -21,7 +21,6 @@ class GenreDao extends BaseDao{
         }
     }
 
-
     public function creerObjetFromSql($r){
         $genre = new Genre();
         $genre->setId($r['id'])->setName($r['name']);
@@ -36,7 +35,20 @@ class GenreDao extends BaseDao{
 
         $genre = new Genre();
         $genre->setId($res['id'])->setName($res['name']);
+        
         return $genre;
+    }
+
+    public function findByMovie($id){
+        $stmt = $this->db->prepare(" SELECT * FROM genre, movie WHERE genre.id = movie.id_genre AND movie.id = ?");
+        $stmt->execute([$id]);
+        $res = $stmt->fetch();
+
+        $genre = new Genre();
+        $genre->setId($res['id'])->setName($res['name']);
+
+        return $genre;
+    
     }
 }
 

@@ -24,11 +24,13 @@ class ActorService {
     public function recordActor($a){
         //création de l'objet acteur.
 
-        $ac = $this->actorDao->createObjectFromFields($a);
+        $ac = $this->actorDao->creerObjetFromSql($a);
 
         //envoi de l'objet acteur au DAO
         $acteur = $this->actorDao->recordActor($ac);
     }
+
+ 
 }
 
 ?>

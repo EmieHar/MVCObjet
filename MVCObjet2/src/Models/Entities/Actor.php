@@ -13,7 +13,7 @@ class Actor{
         return $this->id;
     }
     
-    public function setId(int $id)
+    public function setId(int $id=NULL)
     {
         $this->id = $id;
         return $this;

@@ -30,14 +30,13 @@ class MovieDao extends BaseDao{
               ->setduration($r['duration'])
               ->setDate($r['date'])
               ->setCoverImage($r['coverimage']);
-            //   ->setGenre($r['genre'])
-            //   ->setRealisateur($r['realisateur'])
-            //   ->setActors($r['actor']);
+
 
         return $movie;
     }
 
-    public function findOne($id){
+   
+    public function findById($id){
         $stmt = $this->db->prepare(" SELECT * FROM movie WHERE id = ?");
         $stmt->execute([$id]);
         $res = $stmt->fetch();
@@ -49,10 +48,12 @@ class MovieDao extends BaseDao{
               ->setduration($res['duration'])
               ->setDate($res['date'])
               ->setCoverImage($res['coverimage']);
-            //   ->setGenre($res['genre'])
-            //   ->setRealisateur($res['realisateur'])
-            //   ->setActors($res['actor']);
         return $movie;
+    }
+
+    public function recordMovie(Movie $movie){
+        $stmt = $this->db->prepare(" INSERT INTO movie ( title, description, duration, date, coverimage, id_director, id_genre) VALUES (?,?,?,?,?,?,?)");
+        $stmt->execute([ $movie->getTitle(), $movie->getDescription(), $movie->getDuration(), $movie->getDate(), $movie->getCoverimage()]);
     }
 }
 

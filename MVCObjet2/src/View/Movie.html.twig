@@ -1,0 +1,14 @@
+{% block content %}
+
+   <h1>{{ movie.title }}</h1>
+   <img src="{{ movie.coverimage }}"><br> 
+   <h3>Durée : {{ movie.duration }} minutes &nbsp; | &nbsp; Date de sortie: {{ movie.date }} &nbsp; | &nbsp; Genre: {{ movie.genre.name }}</h3>
+   <h3>Réalisateur: {{ movie.director.nom}}&nbsp; {{ movie.director.prenom}} </h3>
+   <h3>Acteurs:</h3>
+   {% for actor in movie.actors %}
+        <h4>{{ actor.firstname }} {{ actor.lastname }}</h4>
+    {% endfor %}
+    <h2>Description du film:</h2>
+    <p>{{ movie.description }}</p>
+  
+{% endblock %}

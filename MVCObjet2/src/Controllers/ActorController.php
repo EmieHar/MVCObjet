@@ -38,6 +38,11 @@ class ActorController {
     public function recordActor($a){
         $this->actorService->recordActor($a);
     }
-}
+//----------------------A FINIR----------------------------------------
+//     public function deleteActor($a){
+//         $this->actorService->deleteActor($a);
+
+//     }
+ }
 
 ?>

@@ -1,0 +1,67 @@
+{% extends "Base.html.twig" %}
+
+{% block title %}Ajouter un film{% endblock %}
+
+{% block head %}
+
+<style>
+
+form{
+    width: 60%;
+}
+
+form textarea {
+    resize:none;
+    width:60%;
+    min-height:100px;
+}
+
+ul{
+    list-style:none;
+}
+
+div{
+    padding: 10px 0;
+}
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<h2>Ajouter un Film</h2>
+<form method="post" action="recordfilm" enctype ="multipart/form-data">
+<div>
+    Titre du film: <input type="text" placeholder="Titre" name="title" required><br>
+    Affiche du film: <input type="file" name="coverimage"><br>
+    Description du film: <input type="text" placeholder="Description" name="description" required><br>
+    Durée du film (en minutes)<input type="number" name="duration" required><br>
+    Date de sortie du film (aaaa/mm/jj): <input type="date" name="date" required><br>
+    
+    Genre: <select name="genres">
+    {# select pour chaque genre en récupérant leur id -> appeler twig sur cette page lors function findAll #}
+    {% for genre in genres %}
+    <option value="{{genre.id}}" name="genre">{{genre.name}}</option>
+    {% endfor %}
+    </select>
+    
+    {# select pour chaque réalisateur --> id et appel twig  #}
+    Choisir le réalisateur:<select  name:"realisateur">
+    {% for realisateur in realisateurs %}
+    <option value="{{realisateur.id}}" name="director">{{realisateur.lastname}} &nbsp;{{realisateur.firstname}}</option>
+    {% endfor %}
+    </select>
+
+    <h2>Choisir le ou les acteurs:</h2>
+    {# pour acteurs plusieurs choix (chekbox?) -> id et appel twig #}
+     {% for actor in acteurs %}
+    <input type="checkbox" value="{{actor.id}}" name="actor">{{actor.firstname}} &nbsp;{{actor.lastname}}</option>
+    {% endfor %}
+
+</div>
+<button type="submit">Ajouter le film</button>
+
+</form>
+
+{% endblock %}

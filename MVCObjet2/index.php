@@ -95,5 +95,13 @@ $route->respond('POST','/recordactor', function($req) use ($actorController){
     $actorController->recordActor($req->paramsPost());//ajout acteur
 });
 
+$route->respond('GET','/addmovie', function() use ($movieController){
+    $movieController ->addMovie();//affichage d'un formulaire pour ajouter 1 film
+});
+
+$route->respond('POST','/recordmovie', function($req) use ($movieController){
+    $movieController->recordMovie($req->paramsPost());//ajout film
+});
+
 $route->dispatch();
 ?>
