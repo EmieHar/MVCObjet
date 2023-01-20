@@ -23,16 +23,18 @@ class MovieDao extends BaseDao{
 
 
     public function creerObjetFromSql($r){
+        
+    
         $movie = new Movie();
         $movie->setId($r['id'])
               ->setTitle($r['title'])
               ->setDescription($r['description'])
-              ->setduration($r['duration'])
+              ->setDuration($r['duration'])
               ->setDate($r['date'])
-              ->setCoverImage($r['coverimage']);
-
-
-        return $movie;
+           
+              ->setGenre($r['genre'])
+              ->setDirector($r['director']);
+              return $movie;
     }
 
    
@@ -41,14 +43,8 @@ class MovieDao extends BaseDao{
         $stmt->execute([$id]);
         $res = $stmt->fetch();
 
-        $movie = new Movie();
-        $movie->setId($res['id'])
-              ->setTitle($res['title'])
-              ->setDescription($res['description'])
-              ->setduration($res['duration'])
-              ->setDate($res['date'])
-              ->setCoverImage($res['coverimage']);
-        return $movie;
+         
+        return $this->creerObjetFromSql($res);
     }
 
     public function recordMovie(Movie $movie,$actors,$file){
@@ -58,7 +54,7 @@ class MovieDao extends BaseDao{
             $this->db->beginTransaction();
     
             $stmt = $this->db->prepare("INSERT INTO movie ( title, description, coverimage, duration, date, id_director, id_genre) VALUES (?,?,?,?,?,?,?)");
-            $stmt->execute([$movie->getTitle(), $movie->getDescription(), $movie->getCoverImage(),$movie->getDuration(), $movie->getDate(), $movie->getDirector(), $movie->getGenre()]);
+            $stmt->execute([$movie->getTitle(), $movie->getDescription(), $movie->getCoverImage(), $movie->getDuration(), $movie->getDate(), $movie->getDirector(), $movie->getGenre()]);
             
             $movieId = $this->db->lastInsertId();
             
@@ -69,7 +65,7 @@ class MovieDao extends BaseDao{
 
             $this->db->commit();
     
-        }  catch(Exception $e){
+        }  catch(\Exception $e){
             $this->db->rollBack();
             die($e->getMessage());
         }

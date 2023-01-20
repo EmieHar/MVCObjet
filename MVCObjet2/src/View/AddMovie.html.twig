@@ -49,7 +49,7 @@ div{
     <hr>
     
    
-    Choisir le réalisateur:<select  name:"director">
+    Choisir le réalisateur:<select  name="director">
     {% for realisateur in realisateurs %}
     <option value="{{realisateur.id}}">{{realisateur.nom}} &nbsp;{{realisateur.prenom}}</option>
     {% endfor %}

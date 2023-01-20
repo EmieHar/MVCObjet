@@ -28,8 +28,7 @@ class MovieService {
     public function getById($id)
     {     
         // fabrication de l'objet movie. 
-        $movie = $this->movieDao->findById($id);  // recherche dans movieDao ( $id = id du movie )
-        
+        $movie = $this->movieDao->findById($id);  // recherche dans movieDao ( $id = id du movie 
         $actors = $this->actorDao->findByMovie($id); // recherche des acteurs pour 1 film 
         foreach ($actors as $actor) {
             // fonction dans la classe Movie sans Entities
@@ -58,19 +57,16 @@ class MovieService {
 
 
     public function recordMovie($m, $file){
+        
         //récupération des id des acteurs
         $actors = $m['actors'];
+
         //création de l'objet movie.
         $mov = $this->movieDao->creerObjetFromSql($m);
-        $mov -> setGenre($m['genre']);
-        $mov -> setDirector($m['director']);
+        $mov->setCoverImage($file['coverimage']['name']);
+   
 
-        $mov -> setCoverImage($file['coverimage']['name']);
-
-        $mov->setTitle($m['title']);
-        $mov->setDate($m['date']);
-        $mov->setDescription($m['description']);
-        $mov->setDuration($m['duration']);
+        
 
         //envoi de l'objet movie au DAO
         $movie = $this->movieDao->recordMovie($mov,$actors,$file);
