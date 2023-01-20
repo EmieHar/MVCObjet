@@ -31,33 +31,37 @@ div{
 {% block content %}
 
 <h2>Ajouter un Film</h2>
-<form method="post" action="recordfilm" enctype ="multipart/form-data">
+<form method="post" action="recordmovie" enctype ="multipart/form-data">
 <div>
     Titre du film: <input type="text" placeholder="Titre" name="title" required><br>
     Affiche du film: <input type="file" name="coverimage"><br>
     Description du film: <input type="text" placeholder="Description" name="description" required><br>
     Durée du film (en minutes)<input type="number" name="duration" required><br>
-    Date de sortie du film (aaaa/mm/jj): <input type="date" name="date" required><br>
+    Date de sortie du film (aaaa/mm/jj): <input type="date" name="date" required>
+     <hr>
     
-    Genre: <select name="genres">
-    {# select pour chaque genre en récupérant leur id -> appeler twig sur cette page lors function findAll #}
+    Genre: <select name="genre">
+    {# select pour chaque genre en récupérant leur id -> function findAll #}
     {% for genre in genres %}
-    <option value="{{genre.id}}" name="genre">{{genre.name}}</option>
+    <option value="{{genre.id}}">{{genre.name}}</option>
     {% endfor %}
     </select>
+    <hr>
     
-    {# select pour chaque réalisateur --> id et appel twig  #}
-    Choisir le réalisateur:<select  name:"realisateur">
+   
+    Choisir le réalisateur:<select  name:"director">
     {% for realisateur in realisateurs %}
-    <option value="{{realisateur.id}}" name="director">{{realisateur.lastname}} &nbsp;{{realisateur.firstname}}</option>
+    <option value="{{realisateur.id}}">{{realisateur.nom}} &nbsp;{{realisateur.prenom}}</option>
     {% endfor %}
     </select>
+    <hr>
 
     <h2>Choisir le ou les acteurs:</h2>
-    {# pour acteurs plusieurs choix (chekbox?) -> id et appel twig #}
+    {# pour acteurs plusieurs choix (chekbox?) -> id  #}
      {% for actor in acteurs %}
-    <input type="checkbox" value="{{actor.id}}" name="actor">{{actor.firstname}} &nbsp;{{actor.lastname}}</option>
+    <input type="checkbox" value="{{actor.id}}" name="actors[]">{{actor.firstname}} &nbsp;{{actor.lastname}}</option>
     {% endfor %}
+    <hr>
 
 </div>
 <button type="submit">Ajouter le film</button>

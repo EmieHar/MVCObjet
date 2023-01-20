@@ -51,11 +51,52 @@ class MovieDao extends BaseDao{
         return $movie;
     }
 
-    public function recordMovie(Movie $movie){
-        $stmt = $this->db->prepare(" INSERT INTO movie ( title, description, duration, date, coverimage, id_director, id_genre) VALUES (?,?,?,?,?,?,?)");
-        $stmt->execute([ $movie->getTitle(), $movie->getDescription(), $movie->getDuration(), $movie->getDate(), $movie->getCoverimage()]);
+    public function recordMovie(Movie $movie,$actors,$file){
+        
+        try{
+    
+            $this->db->beginTransaction();
+    
+            $stmt = $this->db->prepare("INSERT INTO movie ( title, description, coverimage, duration, date, id_director, id_genre) VALUES (?,?,?,?,?,?,?)");
+            $stmt->execute([$movie->getTitle(), $movie->getDescription(), $movie->getCoverImage(),$movie->getDuration(), $movie->getDate(), $movie->getDirector(), $movie->getGenre()]);
+            
+            $movieId = $this->db->lastInsertId();
+            
+                foreach($actors as $actor){
+                    $sql = $this->db->prepare("INSERT INTO joue (id_acteur, id_movie) VALUES (?,?)");
+                    $sql->execute([$actor, $movieId]);
+                }
+
+            $this->db->commit();
+    
+        }  catch(Exception $e){
+            $this->db->rollBack();
+            die($e->getMessage());
+        }
+    
+        if(isset($file['coverimage'])) {
+            $dossier = 'televersement/'; // non du fichier ou on va copier le fichier
+            $fichier = $file['coverimage']['name'];
+    
+            $extensions = array('png', 'gif', 'jpg', 'jpeg');
+            $extension = pathinfo($file['coverimage']['name'], PATHINFO_EXTENSION);
+    
+            if(in_array(strtolower($extension), $extensions)) {
+    
+                if(move_uploaded_file($file['coverimage']['tmp_name'], $dossier.$fichier)) {
+                        echo 'Upload effectué avec succès !';
+                }
+                else {
+                    echo 'Echec de l\'upload !';
+                }
+            } else {
+                echo "mauvais type de fichier, seuls sont autorisés .png, .gif, .jpg, .jpeg";
+            }
+        }
+    
     }
 }
+
 
 
 ?>

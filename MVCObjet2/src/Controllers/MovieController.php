@@ -41,8 +41,8 @@ class MovieController {
         echo $this->twig->render('AddMovie.html.twig',["acteurs" => $acteurs, "genres" => $genres, "realisateurs" => $realisateurs]);
     }
 
-    public function recordMovie($a){
-        $this->movieService->recordMovie($a);
+    public function recordMovie($a,$file){
+        $this->movieService->recordMovie($a,$file);
     }
 
 }

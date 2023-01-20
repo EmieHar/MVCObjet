@@ -18,7 +18,7 @@ class Movie
         return $this->id;
     }
     
-    public function setId(int $id)
+    public function setId(int $id= NULL)
     {
         $this->id = $id;
         return $this;
@@ -68,7 +68,7 @@ class Movie
         return $this;
     }
 
-    public function getCoverimage(): string
+    public function getCoverImage(): string
     {
         return $this->coverImage;
     }
@@ -79,7 +79,7 @@ class Movie
         return $this;
     }
 
-    public function addActor(Actor $actor): void
+    public function addActor(Actor $actor)
     {
          if (is_array($this->actors)){
              foreach ($this->actors as $a) {
@@ -96,7 +96,7 @@ class Movie
         return $this->actors;
     }
 
-    public function setDirector(Realisateur $director)
+    public function setDirector($director)
     {
         $this->director = $director;
         return $this;
@@ -107,7 +107,7 @@ class Movie
         return $this->director;
     }
 
-    public function setGenre(Genre $genre)
+    public function setGenre($genre)
     {
         $this->genre = $genre;
         return $this;

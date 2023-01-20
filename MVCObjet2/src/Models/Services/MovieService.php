@@ -57,12 +57,23 @@ class MovieService {
     }
 
 
-    public function recordMovie($m){
+    public function recordMovie($m, $file){
+        //récupération des id des acteurs
+        $actors = $m['actors'];
         //création de l'objet movie.
         $mov = $this->movieDao->creerObjetFromSql($m);
+        $mov -> setGenre($m['genre']);
+        $mov -> setDirector($m['director']);
+
+        $mov -> setCoverImage($file['coverimage']['name']);
+
+        $mov->setTitle($m['title']);
+        $mov->setDate($m['date']);
+        $mov->setDescription($m['description']);
+        $mov->setDuration($m['duration']);
 
         //envoi de l'objet movie au DAO
-        $movie = $this->movieDao->recordMovie($mov);
+        $movie = $this->movieDao->recordMovie($mov,$actors,$file);
     }
 }
 

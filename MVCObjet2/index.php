@@ -100,7 +100,8 @@ $route->respond('GET','/addmovie', function() use ($movieController){
 });
 
 $route->respond('POST','/recordmovie', function($req) use ($movieController){
-    $movieController->recordMovie($req->paramsPost());//ajout film
+    $file = $req->files()->all();
+    $movieController->recordMovie($req->paramsPost(),$file);//ajout film
 });
 
 $route->dispatch();
